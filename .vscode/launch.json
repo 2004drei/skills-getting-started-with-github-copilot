@@ -5,15 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Mergington WebApp",
+      "name": "FastAPI: Launch",
       "type": "debugpy",
       "request": "launch",
       "module": "uvicorn",
       "args": [
         "src.app:app",
         "--reload",
-        "--reload-include",
-        "src/static/*"
+        "--port",
+        "8000"
       ],
       "jinja": true
     }
