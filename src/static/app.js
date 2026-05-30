@@ -4,6 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
 
+  // Helper to get initials for avatar
+  function getInitials(name) {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .slice(0, 2)
+      .join("")
+      .toUpperCase();
+  }
+
   // Function to fetch activities from API
   async function fetchActivities() {
     try {
@@ -20,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
         const participantsHtml = details.participants.length > 0
-          ? `<div class="participants"><strong>Participants:</strong><ul>${details.participants.map((participant) => `<li>${participant}</li>`).join("")}</ul></div>`
+          ? `<div class="participants"><strong>Participants:</strong><ul>${details.participants.map((participant) => `<li><span class="avatar">${getInitials(participant)}</span><span class="participant-name">${participant}</span></li>`).join("")}</ul></div>`
           : `<div class="participants no-participants"><strong>Participants:</strong> <span>No participants yet</span></div>`;
 
         activityCard.innerHTML = `
